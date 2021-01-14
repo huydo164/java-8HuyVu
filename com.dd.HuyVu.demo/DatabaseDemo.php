@@ -1,9 +1,8 @@
 <?php
-include('../com.dd.HuyVu.entity/product.php');
-include('../com.dd.HuyVu.dao/Database.php');
-include('../com.dd.HuyVu.entity/category.php');
-include('../com.dd.HuyVu.Accessotion/Accessotion.php');
-
+include_once('../com.dd.HuyVu.entity/product.php');
+include_once('../com.dd.HuyVu.entity/category.php');
+include_once('../com.dd.HuyVu.entity/Accessotion.php');
+include_once('../com.dd.HuyVu.dao/Database.php');
 
 class DatabaseDemo extends Database{
 
@@ -18,7 +17,6 @@ class DatabaseDemo extends Database{
     }
 
     public function selectTableTest(){
-
         var_dump($this->selectTable('product'));
         var_dump($this->selectTable('category'));
         var_dump($this->selectTable('accessory'));
@@ -59,23 +57,25 @@ class DatabaseDemo extends Database{
     }
 
     public function initDatabase(){
-        $listName = ['adidas', 'LV', 'bitistHunter', 'Rolex', 'Hublot', 'Mac', 'lenovo', 'hp', 'dell'];
         
         for($i = 1; $i <= 10; $i++){
-            $pro = new Product(rand(1, 10), $listName[array_rand($listName)], rand(1,10));
-            $cate = new Category(rand(1,10), $listName[array_rand($listName)]);
-            $access = new Accessotion(rand(1,10), $listName[array_rand($listName)]);
+            $pro = new Product(rand(1, 10), substr(md5(microtime()),rand(0,26),5), rand(1,10));
+            $cate = new Category(rand(1,10), substr(md5(microtime()),rand(0,26),5));
+            $access = new Accessotion(rand(1,10), substr(md5(microtime()),rand(0,26),5));
 
             $this->insertTable('product',$pro);
             $this->insertTable('category', $cate);
             $this->insertTable('accessory', $access);
         }
     }
+
     public function printTest(){
         return $this;
     }
 }
 
 $dbd = new DatabaseDemo();
-$dbd->initDatabase();
-var_dump($dbd->printTest());
+$dbd->insertTableTest();
+$dbd->selectTableTest();
+echo '<br>';
+$dbd->updateTableTest();

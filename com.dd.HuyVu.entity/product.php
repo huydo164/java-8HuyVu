@@ -1,8 +1,9 @@
 <?php
-class Product{
-    private $id;
-    private $name;
-    private $categoryId;
+include_once('baserow.php');
+class Product extends BaseRow{
+    protected $id;
+    protected $name;
+    protected $categoryId;
 
     public function __construct($id, $name, $categoryId){
         $this->id = $id;
@@ -15,6 +16,8 @@ class Product{
     public  function getId(){
         return $this->id;
     }
-}
 
-$pro = new Product(21, 'huy', 1);
+    public function getName(){
+        return $this->name;
+    }
+}

@@ -1,12 +1,12 @@
 <?php
-include_once('../com.dd.HuyVu.entity/product.php');
-include_once('Database.php');
-class ProductDao{
+include('Database.php');
+include('../com.dd.HuyVu.entity/Accessotion.php');
 
-    //insert
-    public function insert(product $row){
+class AccessionDao{
+    //Insert
+    public function insert(Accessotion $row){
         $db = new Database();
-        $db->insertTable('product',$row);
+        $db->insertTable('accessory', $row);
         if($db){
             return $db;
         }
@@ -16,31 +16,31 @@ class ProductDao{
     }
 
     //update
-    public function update(product $row){
+    public function update(Accessotion $row){
         $db = new Database();
-        if($db->updateTable('product', $row)){
+        if($db->updateTable('accessory', $row)){
             return $db;
         }
         else{
             return false;
         }
     }
-    
+
     //delete
     public function delete($row){
         $db = new Database();
-        if($db->deleteTable('product', $row)){
+        if($db->deleteTable('accessory', $row)){
             return true;
         }
         else{
             return false;
         }
     }
-
+    
     //findAll
     public function findAll(){
         $db = new Database();
-        $db->selectTable('product');
+        $db->selectTable('accessory');
         if($db){
             return $db;
         }
@@ -52,9 +52,9 @@ class ProductDao{
     //findById
     public function findById($id){
         $db = new Database();
-        foreach($db->selectTable('product') as $key => $category){
-            if($category->getId() == $id){
-                return $category->getId();
+        foreach($db->selectTable('accessory') as $key => $accessory){
+            if($accessory->getId() == $id){
+                return $accessory->getId();
             }
         }
     }
@@ -62,9 +62,9 @@ class ProductDao{
     //findByName
     public function findByName($name){
         $db = new Database();
-        foreach($db->selectTable('product') as $key => $category){
-            if($category->getName() == $name){
-                return $category->getName();
+        foreach($db->selectTable('accessory') as $key => $category){
+            if($accessory->getName() == $name){
+                return $accessory->getName();
             }
         }
     }

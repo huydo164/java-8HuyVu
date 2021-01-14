@@ -1,5 +1,6 @@
 <?php
-class Category{
+include_once('baserow.php');
+class Category extends BaseRow{
     private $id;
     private $name;
 

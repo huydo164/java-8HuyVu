@@ -1,7 +1,7 @@
 <?php
-define('pro', 'product');
-define('cate', 'category');
-define('access', 'accessory');
+define('PRODUCT', 'product');
+define('CATEGORY', 'category');
+define('ACCESSORY', 'accessory');
 
 class Database{
     public $productTable = [];
@@ -9,57 +9,53 @@ class Database{
     public $accessoryTable = [];
     public $instance;
 
-    
-
     //Insert
-    public function insertTable($name, $row){
-        if ($name){
-            if($name === pro){
-                array_push($this->productTable, $row);
-            }
-            elseif($name === cate){
-                array_push($this->categoryTable, $row);
-            }
-            elseif($name === access){
-                array_push($this->accessoryTable, $row);
-            }
+    public function insertTable($name,BaseRow $row){
+        if($name === PRODUCT){
+            array_push($this->productTable, $row);
+        }
+        elseif($name === CATEGORY){
+            array_push($this->categoryTable, $row);
+        }
+        elseif($name === ACCESSORY){
+            array_push($this->accessoryTable, $row);
         }
     }
 
     //Select
-    public function selectTable($name){
-        if($name === pro){
+    public function selectTable( $name){
+        if($name === PRODUCT){
             return $this->productTable;
         }
-        elseif($name === cate){
+        elseif($name === CATEGORY){
             return $this->categoryTable;
         }
-        elseif($name === access){
+        elseif($name === ACCESSORY){
             return $this->accessoryTable;
         }
     }
 
     //Update
-    public function updateTable($name,$row){
-        if($name === pro){
-            foreach($this->productTable as $key => $value){
-                if($value->getId() == $row->getId()){
+    public function updateTable($name,BaseRow $row){
+        if($name === PRODUCT){
+            foreach($this->productTable as $key => $product){
+                if($product->getId() == $row->getId()){
                     $this->productTable[$key] = $row;
                     return $this->productTable;
                 }
             }
         }
-        elseif($name === cate){
-            foreach($this->categoryTable as $key => $value){
-                if($value->getId() == $row->getId()){
+        elseif($name === CATEGORY){
+            foreach($this->categoryTable as $key => $category){
+                if($category->getId() == $row->getId()){
                     $this->categoryTable[$key] = $row;
                     return $this->categoryTable;
                 }
             }
         }
-        elseif($name === access){
-            foreach($this->accessoryTable as $key => $value){
-                if($value->getId() == $row->getId()){
+        elseif($name === ACCESSORY){
+            foreach($this->accessoryTable as $key => $accessory){
+                if($accessory->getId() == $row->getId()){
                     $this->accessoryTable[$key] = $row;
                     return $this->accessoryTable;
                 }
@@ -68,26 +64,26 @@ class Database{
     }
     
     //Delete
-    public function deleteTable($name, $row){
-        if($name === pro){
-            foreach($this->productTable as $key => $value){
-                if($value->getId() == $row->getId()){
+    public function deleteTable($name,BaseRow $row){
+        if($name === PRODUCT){
+            foreach($this->productTable as $key => $product){
+                if($product->getId() == $row->getId()){
                     unset($this->productTable[$key]);
                     return $this->productTable;
                 }
             }
         }
-        elseif($name === cate){
-            foreach($this->categoryTable as $key => $value){
-                if($value->getId() === $row->getId()){
+        elseif($name === CATEGORY){
+            foreach($this->categoryTable as $key => $category){
+                if($category->getId() === $row->getId()){
                     unset($this->categoryTable[$key]);
                     return $this->categoryTable;
                 }
             }
         }
-        elseif($name === access){
-            foreach($this->accessoryTable as $key => $value){
-                if($value->getId() === $row->getId()){
+        elseif($name === ACCESSORY){
+            foreach($this->accessoryTable as $key => $accessory){
+                if($accessory->getId() === $row->getId()){
                     unset($this->accessoryTable[$key]);
                     return $this->accessoryTable;
                 }
@@ -96,41 +92,41 @@ class Database{
     }
 
     //Truncate
-    public function truncateTable($name){
-        if($name === pro){
+    public function truncateTable( $name){
+        if($name === PRODUCT){
             $this->productTable = [];
             return $this->productTable;
         }
-        elseif($name === cate){
+        elseif($name === CATEGORY){
             $this->productTable = [];
             return $this->categoryTable;
         }
-        elseif($name === access){
+        elseif($name === ACCESSORY){
             $this->productTable = [];
             return $this->accessoryTable;
         }
     }
 
-    public function updateTable1($id,$name ,$row){
-        if($name === pro){
-            foreach($this->productTable as $key => $value){
-                if($value->getId() == $id){
+    public function updateTable1($id,$name , BaseRow $row){
+        if($name === PRODUCT){
+            foreach($this->productTable as $key => $product){
+                if($product->getId() == $id){
                     $this->productTable[$key] = $row;
                     return $this->productTable;
                 }
             }
         }
-        elseif($name === cate){
-            foreach($this->categoryTable as $key => $value){
-                if($value->getId() == $id){
+        elseif($name === CATEGORY){
+            foreach($this->categoryTable as $key => $category){
+                if($category->getId() == $id){
                     $this->categoryTable[$key] = $row;
                     return $this->categoryTable;
                 }
             }
         }
-        elseif($name === access){
-            foreach($this->accessoryTable as $key => $value){
-                if($value->getId() == $id){
+        elseif($name === ACCESSORY){
+            foreach($this->accessoryTable as $key => $accessory){
+                if($accessory->getId() == $id){
                     $this->accessoryTable[$key] = $row;
                     return $this->accessoryTable;
                 }
