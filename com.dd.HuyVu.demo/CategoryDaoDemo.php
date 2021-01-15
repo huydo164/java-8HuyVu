@@ -1,39 +1,40 @@
 <?php
 include_once('../com.dd.HuyVu.dao/CategoryDao.php');
 
-class categoryDaoDemo extends CategoryDao{
+class categoryDaoDemo{
     
-    //InsertTest
+    //Hàm kiểm tra thêm dữ liệu
     public function insertTest(){
         $row = new Category(1, 'adidas');
         $category = new CategoryDao();
-        var_dump($category->insert($row));
+        
+        var_dump($category->insert('category', $row));
     }
 
-    //UpdateTest
+    //Hàm kiểm tra cập nhật dữ liệu
     public function updateTest(){
         $row = new Category(1, 'LV');
         $category = new CategoryDao();
-        var_dump($category->update($row));
+        var_dump($category->update( 'category',$row));
     }
 
-    //DeleteTest
+    //Hàm kiểm tra xóa dữ liệu
     public function deleteTest(){
         $row = new Category(1, 'LV');
         $category = new CategoryDao();
-        var_dump($category->delete($row));
+        var_dump($category->delete('category',$row));
     }
 
-    //findAllTest
+    //Hàm kiểm tra tìm kiếm dữ liệu
     public function findAllTest(){
         $category = new CategoryDao();
-        var_dump($category->findAll());
+        var_dump($category->findAll('cateory'));
     }
 
-    //findByIdTest
+    //Hàm kiểm tra tìm kiếm dữ liệu theo id
     public function findByIdTest(){
         $category = new CategoryDao();
-        var_dump($category->findById(1));
+        var_dump($category->findById('category',1));
     }
 }
 

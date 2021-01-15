@@ -4,12 +4,12 @@ define('CATEGORY', 'category');
 define('ACCESSORY', 'accessory');
 
 class Database{
-    public $productTable = [];
-    public $categoryTable = [];
-    public $accessoryTable = [];
-    public $instance;
+    private $productTable = [];
+    private $categoryTable = [];
+    private $accessoryTable = [];
+    private static $instance = null;
 
-    //Insert
+    //Hàm thêm dữ liệu vào database
     public function insertTable($name,BaseRow $row){
         if($name === PRODUCT){
             array_push($this->productTable, $row);
@@ -20,10 +20,11 @@ class Database{
         elseif($name === ACCESSORY){
             array_push($this->accessoryTable, $row);
         }
+        return $this;
     }
 
-    //Select
-    public function selectTable( $name){
+    //Hàm lấy dữ liệu theo tên
+    public function selectTable($name){
         if($name === PRODUCT){
             return $this->productTable;
         }
@@ -35,7 +36,7 @@ class Database{
         }
     }
 
-    //Update
+    //Hàm cập nhật dữ liệu Database theo $row
     public function updateTable($name,BaseRow $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
@@ -63,7 +64,7 @@ class Database{
         }
     }
     
-    //Delete
+    //Hàm xóa dữ liệu Database theo id
     public function deleteTable($name,BaseRow $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
@@ -91,7 +92,7 @@ class Database{
         }
     }
 
-    //Truncate
+    //Hàm xáo dữ liệu database
     public function truncateTable( $name){
         if($name === PRODUCT){
             $this->productTable = [];
@@ -107,6 +108,7 @@ class Database{
         }
     }
 
+    //Hàm update dữ liệu database
     public function updateTable1($id,$name , BaseRow $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
@@ -132,5 +134,13 @@ class Database{
                 }
             }
         }
+    }
+
+    //Hàm lấy đối tượng 
+    static function getInstance(){
+        if(self::$instance == null){
+            self::$instance = new Database();
+        }
+        return self::$instance;
     }
 }

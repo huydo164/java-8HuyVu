@@ -1,76 +1,19 @@
 <?php
 include_once('../com.dd.HuyVu.entity/product.php');
 include_once('Database.php');
-class ProductDao{
+include_once('BaseDao.php');
+class ProductDao extends BaseDao{
 
-    //insert
-    public function insert(product $row){
-        $db = new Database();
-        $db->insertTable('product',$row);
-        if($db){
-            return $db;
-        }
-        else{
-            return false;
-        }
-    }
-
-    //update
-    public function update(product $row){
-        $db = new Database();
-        if($db->updateTable('product', $row)){
-            return $db;
-        }
-        else{
-            return false;
-        }
-    }
-    
-    //delete
-    public function delete($row){
-        $db = new Database();
-        if($db->deleteTable('product', $row)){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    //findAll
-    public function findAll(){
-        $db = new Database();
-        $db->selectTable('product');
-        if($db){
-            return $db;
-        }
-        else{
-            return false;
-        }
-    }
-
-    //findById
-    public function findById($id){
-        $db = new Database();
-        foreach($db->selectTable('product') as $key => $category){
-            if($category->getId() == $id){
-                return $category->getId();
-            }
-        }
-    }
-
-    //findByName
+    //Hàm tìm kiếm dữ liệu database theo tên truyền vào
     public function findByName($name){
-        $db = new Database();
-        foreach($db->selectTable('product') as $key => $category){
-            if($category->getName() == $name){
-                return $category->getName();
+        $db = Database::getInstance();
+        foreach($db->selectTable('product') as $key => $product){
+            if($product->getName() == $name){
+                return $product->getName();
             }
         }
     }
 
     //Search
-    public function search($where){
-
-    }
+    public function search($where){}
 }

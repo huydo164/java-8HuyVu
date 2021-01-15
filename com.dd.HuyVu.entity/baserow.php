@@ -1,7 +1,22 @@
 <?php
-
 abstract class BaseRow{
-    abstract public  function setId($id);
+    private $id;
+    private $name;
 
-    abstract public  function getId();
+    public function setData($id, $name){
+        $this->id = $id;
+        $this->name = $name;
+    }
+
+    public function setName($name){
+        $this->name = $name;
+    }
+
+    public function getName(){
+        return $this->name;
+    }
+
+    public function getId(){
+        return $this->id;
+    }
 }
