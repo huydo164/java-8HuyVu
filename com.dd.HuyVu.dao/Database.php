@@ -7,17 +7,27 @@ class Database{
     private $productTable = [];
     private $categoryTable = [];
     private $accessoryTable = [];
-    private static $instance = null;
+    protected static $instance = null;
+    
+    private function __construct(){}
+
+    //Hàm lấy đối tượng 
+    public static function getInstance(){
+        if(self::$instance == null){
+            self::$instance = new Database();
+        }
+        return self::$instance;
+    }
 
     //Hàm thêm dữ liệu vào database
-    public function insertTable($name,BaseRow $row){
+    public function insertTable($name, $row){
         if($name === PRODUCT){
             array_push($this->productTable, $row);
         }
-        elseif($name === CATEGORY){
+        if($name === CATEGORY){
             array_push($this->categoryTable, $row);
         }
-        elseif($name === ACCESSORY){
+        if($name === ACCESSORY){
             array_push($this->accessoryTable, $row);
         }
         return $this;
@@ -28,16 +38,16 @@ class Database{
         if($name === PRODUCT){
             return $this->productTable;
         }
-        elseif($name === CATEGORY){
+        if($name === CATEGORY){
             return $this->categoryTable;
         }
-        elseif($name === ACCESSORY){
+        if($name === ACCESSORY){
             return $this->accessoryTable;
         }
     }
 
     //Hàm cập nhật dữ liệu Database theo $row
-    public function updateTable($name,BaseRow $row){
+    public function updateTable($name, $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
                 if($product->getId() == $row->getId()){
@@ -46,7 +56,7 @@ class Database{
                 }
             }
         }
-        elseif($name === CATEGORY){
+        if($name === CATEGORY){
             foreach($this->categoryTable as $key => $category){
                 if($category->getId() == $row->getId()){
                     $this->categoryTable[$key] = $row;
@@ -54,7 +64,7 @@ class Database{
                 }
             }
         }
-        elseif($name === ACCESSORY){
+        if($name === ACCESSORY){
             foreach($this->accessoryTable as $key => $accessory){
                 if($accessory->getId() == $row->getId()){
                     $this->accessoryTable[$key] = $row;
@@ -65,7 +75,7 @@ class Database{
     }
     
     //Hàm xóa dữ liệu Database theo id
-    public function deleteTable($name,BaseRow $row){
+    public function deleteTable($name, $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
                 if($product->getId() == $row->getId()){
@@ -74,7 +84,7 @@ class Database{
                 }
             }
         }
-        elseif($name === CATEGORY){
+        if($name === CATEGORY){
             foreach($this->categoryTable as $key => $category){
                 if($category->getId() === $row->getId()){
                     unset($this->categoryTable[$key]);
@@ -82,7 +92,7 @@ class Database{
                 }
             }
         }
-        elseif($name === ACCESSORY){
+        if($name === ACCESSORY){
             foreach($this->accessoryTable as $key => $accessory){
                 if($accessory->getId() === $row->getId()){
                     unset($this->accessoryTable[$key]);
@@ -98,18 +108,18 @@ class Database{
             $this->productTable = [];
             return $this->productTable;
         }
-        elseif($name === CATEGORY){
+        if($name === CATEGORY){
             $this->productTable = [];
             return $this->categoryTable;
         }
-        elseif($name === ACCESSORY){
+        if($name === ACCESSORY){
             $this->productTable = [];
             return $this->accessoryTable;
         }
     }
 
     //Hàm update dữ liệu database
-    public function updateTable1($id,$name , BaseRow $row){
+    public function updateTable1($id,$name , $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
                 if($product->getId() == $id){
@@ -118,7 +128,7 @@ class Database{
                 }
             }
         }
-        elseif($name === CATEGORY){
+        if($name === CATEGORY){
             foreach($this->categoryTable as $key => $category){
                 if($category->getId() == $id){
                     $this->categoryTable[$key] = $row;
@@ -126,7 +136,7 @@ class Database{
                 }
             }
         }
-        elseif($name === ACCESSORY){
+        if($name === ACCESSORY){
             foreach($this->accessoryTable as $key => $accessory){
                 if($accessory->getId() == $id){
                     $this->accessoryTable[$key] = $row;
@@ -134,13 +144,5 @@ class Database{
                 }
             }
         }
-    }
-
-    //Hàm lấy đối tượng 
-    static function getInstance(){
-        if(self::$instance == null){
-            self::$instance = new Database();
-        }
-        return self::$instance;
-    }
+    }   
 }

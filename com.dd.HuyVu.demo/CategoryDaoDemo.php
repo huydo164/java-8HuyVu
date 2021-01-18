@@ -18,17 +18,10 @@ class categoryDaoDemo{
         var_dump($category->update( 'category',$row));
     }
 
-    //Hàm kiểm tra xóa dữ liệu
-    public function deleteTest(){
-        $row = new Category(1, 'LV');
-        $category = new CategoryDao();
-        var_dump($category->delete('category',$row));
-    }
-
     //Hàm kiểm tra tìm kiếm dữ liệu
     public function findAllTest(){
         $category = new CategoryDao();
-        var_dump($category->findAll('cateory'));
+        var_dump($category->findAll('category'));
     }
 
     //Hàm kiểm tra tìm kiếm dữ liệu theo id
@@ -36,11 +29,18 @@ class categoryDaoDemo{
         $category = new CategoryDao();
         var_dump($category->findById('category',1));
     }
+
+    //Hàm kiểm tra xóa dữ liệu
+    public function deleteTest(){
+        $row = new Category(1, 'LV');
+        $category = new CategoryDao();
+        var_dump($category->delete('category',$row));
+    }
 }
 
 $cate = new categoryDaoDemo();
 $cate->insertTest();
 $cate->updateTest();
-$cate->deleteTest();
 $cate->findAllTest();
 $cate->findByIdTest();
+$cate->deleteTest();

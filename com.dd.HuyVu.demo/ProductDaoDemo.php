@@ -16,13 +16,6 @@ class ProductDaoDemo{
         var_dump($product->update('product',$row));
     }
 
-    //Hàm kiểm tra xóa dữu liệu
-    public function deleteTest(){
-        $row = new Product(1, 'LV', 2);
-        $product = new ProductDao();
-        var_dump($product->delete('product',$row));
-    }
-
     //Hàm kiểm tra tìm kiếm dữ liệu
     public function findAllTest(){
         $product = new ProductDao();
@@ -38,14 +31,22 @@ class ProductDaoDemo{
     //Hàm kiểm tra tìm kiếm dữ liệu theo name
     public function findByNameTest(){
         $product = new ProductDao();
-        var_dump($product->findByName('huy'));
+        var_dump($product->findByName('LV'));
     }
+
+     //Hàm kiểm tra xóa dữu liệu
+     public function deleteTest(){
+        $row = new Product(1, 'LV', 2);
+        $product = new ProductDao();
+        var_dump($product->delete('product',$row));
+    }
+
 }
 
 $pro = new ProductDaoDemo();
 $pro->insertTest();
 $pro->updateTest();
-$pro->deleteTest();
 $pro->findAllTest();
 $pro->findByIdTest();
 $pro->findByNameTest();
+$pro->deleteTest();

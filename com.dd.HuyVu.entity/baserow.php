@@ -1,7 +1,7 @@
 <?php
 abstract class BaseRow{
-    private $id;
-    private $name;
+    protected $id;
+    protected $name;
 
     public function setData($id, $name){
         $this->id = $id;

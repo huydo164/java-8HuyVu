@@ -3,13 +3,13 @@ abstract class BaseDao{
 
     //Hàm Thêm dữu liệu vào Database 
     public function insert($name,$row){
-        $db = new Database();
+        $db = Database::getInstance();
         return $db->insertTable($name,$row);
     }
 
     //Hàm cập nhật dữ liệu theo tên
     public function update($name, $row){
-        $db = new Database();
+        $db = Database::getInstance();
         if($db->updateTable($name, $row)){
             return $db;
         }
@@ -20,22 +20,32 @@ abstract class BaseDao{
 
     //Hàm Xóa dữ liệu trong database theo tên
     public function delete($name, $row){
-        $db = new Database();
+        $db = Database::getInstance();
         return $db->deleteTable($name, $row);
     }
 
     //Hàm tìm kiếm dữ liệu database
     public function findAll($name){
-        $db = new Database();
+        $db = Database::getInstance();
         return $db->selectTable($name);
     }
     
     //Hàm tìm kiếm dữ liệu database theo id 
     public function findById($name , $id){
-        $db = new Database();
+        $db = Database::getInstance();
         foreach($db->selectTable($name) as $key => $category){
             if($category->getId() == $id){
                 return $category->getId();
+            }
+        }
+    }
+
+     //Hàm tìm kiếm dữ liệu database theo tên truyền vào
+     public function findByName($name){
+        $db = Database::getInstance();
+        foreach($db->selectTable('product') as $key => $product){
+            if($product->getName() == $name){
+                return $product->getName();
             }
         }
     }
