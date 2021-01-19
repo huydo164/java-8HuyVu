@@ -20,7 +20,7 @@ class Database{
     }
 
     //Hàm thêm dữ liệu vào database
-    public function insertTable($name, $row){
+    public function insertTable($name,Baserow $row){
         if($name === PRODUCT){
             array_push($this->productTable, $row);
         }
@@ -47,7 +47,7 @@ class Database{
     }
 
     //Hàm cập nhật dữ liệu Database theo $row
-    public function updateTable($name, $row){
+    public function updateTable($name,Baserow $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
                 if($product->getId() == $row->getId()){
@@ -75,7 +75,7 @@ class Database{
     }
     
     //Hàm xóa dữ liệu Database theo id
-    public function deleteTable($name, $row){
+    public function deleteTable($name,Baserow $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
                 if($product->getId() == $row->getId()){
@@ -119,7 +119,7 @@ class Database{
     }
 
     //Hàm update dữ liệu database
-    public function updateTable1($id,$name , $row){
+    public function updateTable1($id,$name , Baserow $row){
         if($name === PRODUCT){
             foreach($this->productTable as $key => $product){
                 if($product->getId() == $id){
